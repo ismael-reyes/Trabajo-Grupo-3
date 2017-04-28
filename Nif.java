@@ -6,6 +6,8 @@
  *  @version: 2.0 - 2017.02.14
  *  @author: ajp
  */
+esto es una prueba
+
 import java.io.Serializable;
 import util.Formato;
 
