@@ -6,9 +6,6 @@
  *  @version: 2.0 - 2017/03/20
  *  @author: ajp
  */
-
-package util;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
