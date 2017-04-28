@@ -6,9 +6,6 @@
  * @version: 2.0 - 2017/03/23
  * @author: ajp
  */
-
-package util.test;
-
 import static org.junit.Assert.*;
 
 import java.util.Date;
