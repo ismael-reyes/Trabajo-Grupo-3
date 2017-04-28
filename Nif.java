@@ -6,9 +6,6 @@
  *  @version: 2.0 - 2017.02.14
  *  @author: ajp
  */
-
-package modelo;
-
 import java.io.Serializable;
 import util.Formato;
 
