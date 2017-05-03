@@ -1,12 +1,10 @@
 /** Proyecto: Juego de la vida.
  *  Implementa el concepto de Nif según el modelo 2
  *  Se hace validación de datos pero no se gestionan todavía los errores correspondientes.
- *  @since: prototipo1.2
- *  @source: Nif.java 
- *  @version: 2.0 - 2017.02.14
- *  @author: ajp
+ *  prototipo1.2
+ *  Nif.java 
  */
-esto es una prueba
+
 
 import java.io.Serializable;
 import util.Formato;
