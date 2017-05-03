@@ -4,8 +4,6 @@
  * Se hace validación de datos pero no se gestionan todavía los errores correspondientes. 
  * @since: prototipo2.0
  * @source: Mundo.java 
- * @version: 2.0 - 2017.03.11
- * @author: ajp
  */
 import java.io.Serializable;
 import java.util.ArrayList;
