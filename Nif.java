@@ -5,6 +5,7 @@
  *  Nif.java 
  */
 
+
 import java.io.Serializable;
 import util.Formato;
 
