@@ -10,12 +10,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-aa
-
 public class Fecha {
 
 	private Calendar calendario;
-
+	
+    /** Dias de la semana*/@ismaelreyes
+    public static final String[] diasSemana = {"", "DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"};
+	
 	public Fecha(int año, int mes, int dia) {
 		calendario = new GregorianCalendar(año, mes-1, dia);
 		//calendario.setLenient(false);
@@ -24,6 +25,22 @@ public class Fecha {
 	public Fecha(int año, int mes, int dia, int hora, int minuto, int segundo) {
 		calendario = new GregorianCalendar(año, mes-1, dia, hora, minuto, segundo);
 		//calendario.setLenient(false);
+	}
+	/** Recoger el valor de la fecha en formato 00/00/0000 */@ismaelreyes
+	public Fecha(String fecha) {
+		
+		int indiceBarra1 = fecha.indexOf('/');
+		int indiceBarra2 = fecha.lastIndexOf('/');
+		
+		dia  = Integer.parseInt(fecha.substring(0,indiceBarra1));
+		mes  = Integer.parseInt(fecha.substring(indiceBarra1+1,indiceBarra2));
+		anyo = Integer.parseInt(fecha.substring(indiceBarra2+1));
+	}
+	/**envia los datos en formato 00/00/0000 */@ismaelreyes
+        public String toString() { return  dia+"/"+mes+"/"+anyo; }
+	public String toString() {
+		return "" + getAño() + "." + getMes() + "." + getDia() 
+		+ " " + getHora() + ":" + getMinuto() + ":" + getSegundo();
 	}
 	
 	public Fecha() {
@@ -34,54 +51,42 @@ public class Fecha {
 	public Fecha(Fecha fecha) {
 		this(fecha.getAño(), fecha.getMes(), fecha.getDia());
 	}
-
-	public int getAño() {
-		return calendario.get(Calendar.YEAR);
+	/**compara dos fechas y te da o la posterior o la anterior o te las compara*/@ismaelreyes
+	//metodo posterior a fechas    
+	public boolean posterior(Fecha fecha) {
+    	
+    	if (this.anyo>fecha.anyo) return true;
+    	if (this.anyo<fecha.anyo) return false;
+    	
+    	if (this.mes>fecha.mes) return true;
+    	if (this.mes<fecha.mes) return false;
+    	
+    	if (this.dia>fecha.dia) return true;
+    	return false;
+    }
+    //metodo anterior a fechas
+    public boolean anterior(Fecha fecha) {
+    	
+    	if (this.anyo<fecha.anyo) return true;
+    	if (this.anyo>fecha.anyo) return false;
+    	
+    	if (this.mes<fecha.mes) return true;
+    	if (this.mes>fecha.mes) return false;
+    	
+    	if (this.dia<fecha.dia) return true;
+    	return false;
+    } @ismaelreyes
+    //metodo que comapra fechas 
+  /*  public int compareTo(Fecha fecha){ 
+    *	if (posterior(fecha)) return 1;
+    *	else if (anterior(fecha))return -1;
+    *	return 0;
+    *}
+    */
+    public int compareTo(Fecha fecha) {
+		return calendario.compareTo(fecha.calendario);
 	}
 
-	public int getMes() {
-		return calendario.get(Calendar.MONTH) + 1;
-	}
-	
-	public int getDia() {
-		return calendario.get(Calendar.DAY_OF_MONTH);
-	}
-
-	public int getHora() {
-		return calendario.get(Calendar.HOUR_OF_DAY);
-	}
-	
-	public int getMinuto() {
-		return calendario.get(Calendar.MINUTE);
-	}
-	
-	public int getSegundo() {
-		return calendario.get(Calendar.SECOND);
-	}
-	
-	public void setAño(int año) {
-		calendario.set(Calendar.YEAR, año);
-	}
-	
-	public void setMes(int mes) {
-		calendario.set(Calendar.MONTH, mes-1);
-	}
-	
-	public void setDia(int dia) {
-		calendario.set(Calendar.DAY_OF_MONTH, dia);
-	}
-	
-	public void setHora(int hora) {
-		calendario.set(Calendar.HOUR_OF_DAY, hora);
-	}
-	
-	public void setMinuto(int minuto) {
-		calendario.set(Calendar.MINUTE, minuto);
-	}
-	
-	public void setSegundo(int segundo) {
-		calendario.set(Calendar.SECOND, segundo);
-	}
 	/**
 	 * Obtiene el valor absoluto de la diferencia en segundos entre dos fechas
 	 * @param fecha
@@ -217,15 +222,8 @@ public class Fecha {
 		return (GregorianCalendar) calendario;
 	}
 	
-	public int compareTo(Fecha fecha) {
-		return calendario.compareTo(fecha.calendario);
-	}
 	
-	@Override
-	public String toString() {
-		return "" + getAño() + "." + getMes() + "." + getDia() 
-		+ " " + getHora() + ":" + getMinuto() + ":" + getSegundo();
-	}
+	
 
 	/**
 	 * Dos objetos son iguales si: 
@@ -268,5 +266,53 @@ public class Fecha {
 	@Override
 	public Object clone() {
 		return new Fecha(this);
+	}
+	/**Gets y sets */ @ismaelreyes
+	public int getAño() {
+		return calendario.get(Calendar.YEAR);
+	}
+
+	public int getMes() {
+		return calendario.get(Calendar.MONTH) + 1;
+	}
+	
+	public int getDia() {
+		return calendario.get(Calendar.DAY_OF_MONTH);
+	}
+
+	public int getHora() {
+		return calendario.get(Calendar.HOUR_OF_DAY);
+	}
+	
+	public int getMinuto() {
+		return calendario.get(Calendar.MINUTE);
+	}
+	
+	public int getSegundo() {
+		return calendario.get(Calendar.SECOND);
+	}
+	
+	public void setAño(int año) {
+		calendario.set(Calendar.YEAR, año);
+	}
+	
+	public void setMes(int mes) {
+		calendario.set(Calendar.MONTH, mes-1);
+	}
+	
+	public void setDia(int dia) {
+		calendario.set(Calendar.DAY_OF_MONTH, dia);
+	}
+	
+	public void setHora(int hora) {
+		calendario.set(Calendar.HOUR_OF_DAY, hora);
+	}
+	
+	public void setMinuto(int minuto) {
+		calendario.set(Calendar.MINUTE, minuto);
+	}
+	
+	public void setSegundo(int segundo) {
+		calendario.set(Calendar.SECOND, segundo);
 	}
 } //class
